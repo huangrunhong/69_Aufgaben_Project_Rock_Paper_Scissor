@@ -14,7 +14,7 @@ interface GameState {
   result: string;
 }
 
-const mapping = {
+const mapping: Record<string, string> = {
   rock: "✊",
   paper: "🖐",
   scissor: "✌",
@@ -28,9 +28,9 @@ const Home1 = () => {
     result: "Let's play",
   });
 
-  const chooseRounds = (event) =>
+  const chooseRounds = (event: React.ChangeEvent<HTMLInputElement>) =>
     setState({
-      rounds: event.target.value,
+      rounds: Number(event.target.value),
       userChoice: state.userChoice,
       computerChoice: state.computerChoice,
       userScore: state.userScore,
@@ -140,11 +140,11 @@ const Home1 = () => {
       </div>
       <div className="counts">
         <p>You</p>
-        <span>{mapping[state.userChoice]}</span>
+        <span>{mapping[state.userChoice || ""]}</span>
         <p className="score">{state.userScore}</p>
         <p>:</p>
         <p className="score">{state.computerScore}</p>
-        <span>{mapping[state.computerChoice]}</span>
+        <span>{mapping[state.computerChoice || ""]}</span>
         <p>Computer</p>
       </div>
       <h1>{state.result}</h1>
